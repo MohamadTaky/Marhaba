@@ -1,13 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.dark-scroll::-webkit-scrollbar,
+	.scroll::-webkit-scrollbar {
+		@apply w-2;
+	}
+
+	.scroll::-webkit-scrollbar-thumb {
+		@apply rounded-md;
+	}
+	.dark-scroll::-webkit-scrollbar-thumb {
+		@apply rounded-md;
+	}
+}
+@layer base {
+	:root {
+		--color-fill: #ffffff;
+		--color-window: #f2f2f2;
+		--color-element: #e5e5e5;
+		--color-sec: #d8d8d8;
+
+		--color-interactable: #6366f1;
+		--color-interactable-hover: #818cf8;
+		--color-interactable-active: #a5b4fc;
+
+		--color-text-primary: #000000;
+		--color-text-secondary: #4b5563;
+	}
+	.dark {
+		--color-fill: #1c1c27;
+		--color-window: #252533;
+		--color-element: #2e2e40;
+		--color-sec: #37374d;
+
+		--color-interactable: #4f46e5;
+		--color-interactable-hover: #4338ca;
+		--color-interactable-active: #3730a3;
+
+		--color-text-primary: #d1d5db;
+		--color-text-secondary: #9ca3af;
+	}
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+		"Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	transition: background-color 5000s ease-in-out 0s;
+	-webkit-text-fill-color: var(--color-text-primary) !important;
 }
