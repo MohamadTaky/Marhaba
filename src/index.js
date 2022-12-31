@@ -5,6 +5,7 @@ import App from "./App";
 import { FirebaseAppProvider } from "reactfire";
 import FirebaseComponents from "components/firebase-components/firebase-components";
 import Suspenser from "components/suspenser/suspenser.component";
+import "i18n";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyC8NVGkNmVD_nUEZSeTYuvEc6Q-KQOtDaU",

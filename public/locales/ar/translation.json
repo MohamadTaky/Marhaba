@@ -1,0 +1,14 @@
+{
+	"app name": "مرحبا",
+	"made with": "صنع باستخدام",
+
+	"user name": "اسم المستخدم",
+	"email": "البريد الالكتروني",
+	"password": "كلمة المرور",
+	"confirm password": "تأكيد كلمة المرور",
+	"sign up": "تسجيل حساب",
+	"sign in": "تسجيل الدخول",
+	"already have an account ?": "لديك حساب بالفعل ؟ ",
+	"don't have an account ?": "ليس لديك حساب ؟ ",
+  "remember me": "تذكرني"
+}
