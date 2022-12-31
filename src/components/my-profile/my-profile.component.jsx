@@ -7,7 +7,7 @@ import Avatar from "components/avatar/avatar.component";
 import TextArea from "components/inputs/text-area.component";
 import { useFirestore, useAuth, useStorage } from "reactfire";
 import useUserDoc from "libraries/reactfire/custom-hooks/useUserDoc";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 import useToggle from "hooks/useToggle";
 
 export default function MyProfile() {
@@ -17,6 +17,7 @@ export default function MyProfile() {
 	const { value: editing, toggle: toggleEditing } = useToggle(false);
 	const [inputStatus, setInputStatus] = useState("");
 	const { userDoc, status } = useUserDoc();
+	const { t, i18n } = useTranslation();
 
 	const handleEditToggle = async () => {
 		const userRef = doc(firestore, `users/${userDoc.id}`);
@@ -67,6 +68,19 @@ export default function MyProfile() {
 			<p className="self-start bg-skin-element w-full p-1 rounded-md">
 				{t("friends")}: {userDoc.data().friends.length}
 			</p>
+			<p className="mt-auto">{t("language")} :</p>
+			<div className="bg-skin-element flex rounded-lg overflow-hidden">
+				<button
+					onClick={() => i18n.changeLanguage("ar")}
+					className={`${i18n.language === "ar" && "bg-skin-interactable-active"} px-2 py-1`}>
+					العربية
+				</button>
+				<button
+					onClick={() => i18n.changeLanguage("en")}
+					className={`${i18n.language === "en" && "bg-skin-interactable-active"} px-2 py-1`}>
+					English
+				</button>
+			</div>
 		</div>
 	);
 }

@@ -7,6 +7,7 @@ import { usePersistedStore } from "libraries/zustand/store";
 import { useRef } from "react";
 import { useSigninCheck, useFirestore, useUser } from "reactfire";
 import Suspenser from "components/suspenser/suspenser.component";
+import { useTranslation } from "react-i18next";
 
 function App() {
 	const darkMode = usePersistedStore(state => state.darkMode);
@@ -14,6 +15,7 @@ function App() {
 	const { data: signInCheckResult } = useSigninCheck();
 	const firestore = useFirestore();
 	const { data: user } = useUser();
+	const { i18n } = useTranslation();
 	useEffect(() => {
 		if (user) {
 			const userDocRef = doc(firestore, `users/${user.uid}`);
@@ -29,7 +31,7 @@ function App() {
 	}, [user]);
 
 	return (
-		<div dir="ltr" className={darkMode ? "dark" : ""}>
+		<div dir={i18n.language === "ar" ? "rtl" : "ltr"} className={darkMode ? "dark" : ""}>
 			<div className="flex h-screen w-screen text-skin-primary bg-skin-fill">
 				<Suspenser>{signInCheckResult.signedIn ? <AppPage /> : <LandingPage />}</Suspenser>
 			</div>
