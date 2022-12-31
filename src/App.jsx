@@ -29,7 +29,7 @@ function App() {
 	}, [user]);
 
 	return (
-		<div className={darkMode ? "dark" : ""}>
+		<div dir="ltr" className={darkMode ? "dark" : ""}>
 			<div className="flex h-screen w-screen text-skin-primary bg-skin-fill">
 				<Suspenser>{signInCheckResult.signedIn ? <AppPage /> : <LandingPage />}</Suspenser>
 			</div>

@@ -6,35 +6,31 @@ import {
 	browserSessionPersistence,
 	browserLocalPersistence,
 } from "firebase/auth";
-import {
-	doc,
-	setDoc,
-	writeBatch,
-	arrayUnion,
-	arrayRemove,
-	query,
-	collection,
-	where,
-} from "firebase/firestore";
+import { doc, setDoc, writeBatch, arrayUnion, arrayRemove } from "firebase/firestore";
 
 const errorMessages = {
-	"auth/weak-password": "Password should be at least 6 characters",
-	"auth/email-already-in-use": "Email already in use",
-	"auth/wrong-password": "Wrong password",
+	"auth/weak-password": "password should be at least 6 characters",
+	"auth/email-already-in-use": "email already in use",
+	"auth/wrong-password": "wrong password",
 };
 
 export const handleSignUp = async (e, setStatus, setStatusMessage, setErrorMessage, firestore) => {
-	e.preventDefault();
-	const [{ value: username }, { value: email }, { value: password }, { value: confirmPassword }] =
-		e.target.elements;
 	try {
-		if (!username) throw "Please enter your name";
-		if (!email) throw "Please enter your email";
-		if (!password) throw "Please enter your password";
-		if (!confirmPassword) throw "Please confirm your password";
-		if (confirmPassword !== password) throw "Passwords does not match";
+		e.preventDefault();
+		const {
+			username: { value: username },
+			email: { value: email },
+			password: { value: password },
+			confirmPassword: { value: confirmPassword },
+		} = e.target;
+		if (!username) throw "please enter your name";
+		if (!email) throw "please enter your email";
+		if (!password) throw "please enter your password";
+		if (password.length <= 5) throw "password should be at least 6 characters";
+		if (!confirmPassword) throw "please confirm your password";
+		if (confirmPassword !== password) throw "passwords does not match";
 		setStatus("loading");
-		setStatusMessage("Signing up");
+		setStatusMessage("signing up");
 		const { user } = await createUserWithEmailAndPassword(auth, email, password);
 		await updateProfile(user, { displayName: username });
 		const userDoc = doc(firestore, `users/${user.uid}`);
@@ -58,14 +54,14 @@ export const handleSignUp = async (e, setStatus, setStatusMessage, setErrorMessa
 };
 
 export const handleSignIn = async (e, setStatus, setStatusMessage, setErrorMessage) => {
-	e.preventDefault();
-	const [{ value: email }, { value: password }, { checked: rememberMe }] = e.target.elements;
 	try {
-		if (!email) throw "Please enter your email";
-		if (!password) throw "Please enter your password";
+		e.preventDefault();
+		const [{ value: email }, { value: password }, { checked: rememberMe }] = e.target.elements;
+		if (!email) throw "please enter your email";
+		if (!password) throw "please enter your password";
 
 		setStatus("loading");
-		setStatusMessage("Signing in");
+		setStatusMessage("signing in");
 		await auth.setPersistence(rememberMe ? browserLocalPersistence : browserSessionPersistence);
 		const userAuth = await signInWithEmailAndPassword(auth, email, password);
 		setErrorMessage("");

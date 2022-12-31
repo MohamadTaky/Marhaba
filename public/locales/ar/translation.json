@@ -1,6 +1,18 @@
 {
 	"app name": "مرحبا",
-	"made with": "صنع باستخدام",
+	"made with": "تم تطويره باستخدام",
+
+	"password should be at least 6 characters": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+	"email already in use": "البريد الالكتروني مستخدم بالفعل",
+	"wrong password": "كلمة المرور خاطئة",
+	"please enter your name": "الرجاء ادخال الاسم",
+	"please enter your email": "الرجاء ادخال بريدك الالكتروني",
+	"please enter your password": "الرجاء ادخال كلمة المرور",
+	"please confirm your password": "الرجاء تأكيد كلمة المرور",
+	"passwords does not match": "كلمتا المرور غير متطابقتين",
+	"loading": "جاري التحميل",
+	"signing up": "جاري تسجيل الحساب",
+	"signing in": "جاري تسجيل الدخول",
 
 	"user name": "اسم المستخدم",
 	"email": "البريد الالكتروني",
@@ -10,5 +22,23 @@
 	"sign in": "تسجيل الدخول",
 	"already have an account ?": "لديك حساب بالفعل ؟ ",
 	"don't have an account ?": "ليس لديك حساب ؟ ",
-  "remember me": "تذكرني"
+	"remember me": "تذكرني",
+
+	"add": "إضافة",
+	"sent": "مُرسل",
+	"friend": "صديق",
+	"friends": "الأصدقاء",
+	"friend requests": "طلبات الصداقة",
+	"groups": "المجموعات",
+	"dark mode": "الوضع المظلم",
+	"sign out": "تسجيل الخروج",
+	"chat": "دردشة",
+	"chats": "الدردشات",
+	"you don't have any friends": "ليس لديك أي أصدقاء",
+	"search for a friend": "البحث عن صديق",
+	"no results found": "لم يتم العثور على نتائج",
+	"results": "النتائج",
+	"message": "مراسلة",
+	"last seen": "اّخر ظهور",
+	"at": "في"
 }

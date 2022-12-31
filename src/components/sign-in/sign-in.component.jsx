@@ -4,13 +4,13 @@ import Input from "components/input/input.component";
 import PasswordInput from "components/inputs/password-field.component";
 import CheckBox from "components/inputs/check-box.component";
 import useStore from "libraries/zustand/store";
-import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 export default function SignIn() {
 	const setErrorMessage = useStore(state => state.setErrorMessage);
 	const setStatusMessage = useStore(state => state.setStatusMessage);
 	const setStatus = useStore(state => state.setStatus);
-	const {t} = useTranslation();
+
 	return (
 		<form
 			className="flex flex-col gap-4"

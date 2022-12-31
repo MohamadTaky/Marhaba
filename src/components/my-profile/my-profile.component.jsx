@@ -7,14 +7,15 @@ import Avatar from "components/avatar/avatar.component";
 import TextArea from "components/inputs/text-area.component";
 import { useFirestore, useAuth, useStorage } from "reactfire";
 import useUserDoc from "libraries/reactfire/custom-hooks/useUserDoc";
+import { t } from "i18next";
+import useToggle from "hooks/useToggle";
 
 export default function MyProfile() {
 	const firestore = useFirestore();
 	const storage = useStorage();
 	const auth = useAuth();
-	const [editing, setIsEditing] = useState(false);
+	const { value: editing, toggle: toggleEditing } = useToggle(false);
 	const [inputStatus, setInputStatus] = useState("");
-
 	const { userDoc, status } = useUserDoc();
 
 	const handleEditToggle = async () => {
@@ -23,7 +24,7 @@ export default function MyProfile() {
 		if (editing && trimmedStatus && trimmedStatus != userDoc.data().status)
 			await updateDoc(userRef, { status: trimmedStatus });
 		else setInputStatus(userDoc.data().status);
-		setIsEditing(prev => !prev);
+		toggleEditing();
 	};
 
 	const handleProfileImageChange = async e => {
@@ -38,7 +39,7 @@ export default function MyProfile() {
 	if (status === "loading") return "Loading";
 
 	return (
-		<div className="flex flex-col gap-4 p-4 items-center bg-skin-window w-3/12 relative shadow-lg">
+		<div className="flex flex-col gap-4 p-4 items-center bg-skin-window w-3/12 relative border-x-2 border-x-skin">
 			<Avatar
 				imageUrl={userDoc.data().avatarUrl}
 				handleChange={handleProfileImageChange}
@@ -50,21 +51,21 @@ export default function MyProfile() {
 				{editing ? (
 					<>
 						<TextArea value={inputStatus} onChange={e => setInputStatus(e.target.value)} />
-						<button className="absolute -top-4 right-0 text-skin-primary">
+						<button className="absolute -top-4 text-skin-primary ltr:right-0 rtl:left-0">
 							<CheckCircle className="text-skin-active" onClick={handleEditToggle} size="18" weight="fill" />
 						</button>
 					</>
 				) : (
 					<>
 						<p className="p-1">{userDoc.data().status}</p>
-						<button className="absolute -top-4 right-0 text-skin-primary">
+						<button className="absolute -top-4 text-skin-primary ltr:right-0 rtl:left-0">
 							<PencilLine className="text-skin-active" onClick={handleEditToggle} weight="fill" size="18" />
 						</button>
 					</>
 				)}
 			</div>
 			<p className="self-start bg-skin-element w-full p-1 rounded-md">
-				Friends: {userDoc.data().friends.length}
+				{t("friends")}: {userDoc.data().friends.length}
 			</p>
 		</div>
 	);

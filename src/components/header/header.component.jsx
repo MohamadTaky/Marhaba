@@ -2,6 +2,8 @@ import Avatar from "components/avatar/avatar.component";
 import { doc } from "firebase/firestore";
 import useStore from "libraries/zustand/store";
 import { useFirestore, useFirestoreDocData } from "reactfire";
+import { Trans } from "react-i18next";
+import { t } from "i18next";
 
 export default function Header() {
 	const firestore = useFirestore();
@@ -10,7 +12,11 @@ export default function Header() {
 	const { data: headerData } = useFirestoreDocData(doc(firestore, `users/${otherId}`));
 
 	const deltaMinutes = minutes(Date.now() - headerData.lastActive.toDate());
-	const date = headerData.lastActive.toDate();
+	const date = headerData.lastActive.toDate().toLocaleDateString().toString();
+	const time = headerData.lastActive.toDate().toLocaleTimeString([], {
+		hour: "2-digit",
+		minute: "2-digit",
+	});
 	const isOnline = deltaMinutes < 5;
 
 	return (
@@ -18,15 +24,16 @@ export default function Header() {
 			{headerData.name && (
 				<>
 					<Avatar imageUrl={headerData.avatarUrl} />
-					<div>
+					<div className="grow">
 						<p className="font-bold text-lg text-skin-active">{headerData.name}</p>
 						<p className={`font-semibold text-sm  ${isOnline ? "text-green-500" : "text-skin-secondary"} `}>
-							{isOnline
-								? "Online"
-								: `Last seen: ${date.toLocaleDateString()} at ${date.toLocaleTimeString([], {
-										hour: "2-digit",
-										minute: "2-digit",
-								  })}`}
+							{!isOnline ? (
+								<>
+									{t("last seen")} : {date} {t("at")} {time}
+								</>
+							) : (
+								"Online"
+							)}
 						</p>
 					</div>
 				</>

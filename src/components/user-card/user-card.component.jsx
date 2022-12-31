@@ -5,7 +5,7 @@ export default function UserCard({ name, status, avatarUrl, children }) {
 		<div className="p-3 hover:bg-skin-hover">
 			<div className="flex items-center gap-2">
 				<Avatar imageUrl={avatarUrl} />
-				<div>
+				<div className="grow">
 					<p className="font-bold">{name}</p>
 					<p className="text-sm text-skin-secondary">{status}</p>
 				</div>

@@ -9,7 +9,9 @@ export default function Message({ content, sentAt, sentBy }) {
 
 	const date = sentAt && sentAt.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 	const containerStyles = classNames(
-		user.uid === sentBy ? "self-start rounded-r-xl" : "self-end rounded-l-xl"
+		user.uid === sentBy
+			? "self-start ltr:rounded-r-xl rtl:rounded-l-xl"
+			: "self-end ltr:rounded-l-xl rtl:rounded-r-xl"
 	);
 
 	return (

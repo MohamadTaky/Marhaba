@@ -12,17 +12,18 @@ export default function Navbar() {
 	const auth = useAuth();
 
 	return (
-		<nav className="flex flex-col bg-skin-window border-skin border-r-2">
+		<nav className="flex flex-col bg-skin-window">
 			<NavItem Icon={ChatCircle} tooltip="chats" handleClick={() => setCurrentTab("chats")} />
+			<NavItem Icon={Users} tooltip="groups" handleClick={() => setCurrentTab("groups")} />
 			<NavItem Icon={User} tooltip="friends" handleClick={() => setCurrentTab("friends")} />
 			<NavItem
 				Icon={UserGear}
 				tooltip="friend requests"
 				handleClick={() => setCurrentTab("friend requests")}
 			/>
-			<NavItem Icon={Users} tooltip="groups" handleClick={() => setCurrentTab("groups")} />
-			<NavItem Icon={darkMode ? Moon : Sun} bottom tooltip="dark mode" handleClick={toggleDarkMode} />
-			<NavItem Icon={SignOut} tooltip="sign out" handleClick={() => auth.signOut()} />
+
+			<NavItem Icon={darkMode ? Moon : Sun} tooltip="dark mode" handleClick={toggleDarkMode} />
+			<NavItem Icon={SignOut} tooltip="sign out" bottom handleClick={() => auth.signOut()} />
 		</nav>
 	);
 }

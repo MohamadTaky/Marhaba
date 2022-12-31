@@ -1,15 +1,15 @@
 import classNames from "classnames";
 import useStore, { usePersistedStore } from "libraries/zustand/store";
 import { Sun, Moon } from "phosphor-react";
+import { t } from "i18next";
 
-export default function NavItem({ Icon, tab, tooltip, bottom, handleClick }) {
+export default function NavItem({ Icon, tooltip, bottom, handleClick }) {
 	const currentTab = useStore(state => state.currentTab);
 	const darkMode = usePersistedStore(state => state.darkMode);
 	const activeClass = classNames({
 		"bg-skin-sec text-skin-active": currentTab === tooltip,
 		"hover:bg-skin-element text-skin-secondary": currentTab !== tooltip,
 	});
-
 	const setSidebarActive = useStore(state => state.setSidebarActive);
 	const sidebarActive = useStore(state => state.sidebarActive);
 
@@ -43,8 +43,11 @@ export default function NavItem({ Icon, tab, tooltip, bottom, handleClick }) {
 			) : (
 				<Icon className={`p-2 box-content transition-colors ${activeClass}`} size={32} weight="fill" />
 			)}
-			<span className="z-10 absolute left-full top-0 mt-1 rounded-r-lg scale-x-0 group-hover:scale-x-100 whitespace-nowrap px-4 py-2 bg-skin-sec transition-transform origin-left">
-				{tooltip}
+			<span
+				className="z-10 absolute top-0 mt-1 whitespace-nowrap px-4 py-2 bg-skin-sec transition-transform scale-x-0 group-hover:scale-x-100
+				ltr:origin-left ltr:left-full ltr:rounded-r-lg
+				rtl:origin-right rtl:right-full rtl:rounded-l-lg">
+				{t(tooltip)}
 			</span>
 		</button>
 	);

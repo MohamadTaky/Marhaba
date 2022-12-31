@@ -12,7 +12,7 @@ export default function TextArea({ ...rest }) {
 		<textarea
 			ref={inputRef}
 			autoFocus
-			className="outline-none min-h-[64px] bg-skin-element p-1 transition-all overflow-hidden rounded-md resize-none"
+			className="outline-none w-full dir-auto bg-skin-element p-1 transition-all overflow-hidden rounded-md resize-none"
 			{...rest}
 		/>
 	);

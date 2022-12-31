@@ -4,6 +4,7 @@ import useStore from "libraries/zustand/store";
 import Button from "components/button/button.component";
 import { useFirestore } from "reactfire";
 import useUserDoc from "libraries/reactfire/custom-hooks/useUserDoc";
+import { t } from "i18next";
 
 export default function FriendItem({ id, data }) {
 	const setCurrentChat = useStore(state => state.setCurrentChat);
@@ -17,9 +18,9 @@ export default function FriendItem({ id, data }) {
 	return (
 		<UserCard {...data}>
 			<Button disabled={isFriend || isFriendRequestSent} onClick={() => sendFriendRequest(id, firestore)}>
-				{isFriend ? "Friend" : isFriendRequestSent ? "Sent" : "Add"}
+				{t(isFriend ? "friend" : isFriendRequestSent ? "sent" : "add")}
 			</Button>
-			<Button onClick={() => setCurrentChat({ otherUserId: id })}>Chat</Button>
+			<Button onClick={() => setCurrentChat({ otherUserId: id })}>{t("chat")}</Button>
 		</UserCard>
 	);
 }

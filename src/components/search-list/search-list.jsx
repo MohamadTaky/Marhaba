@@ -2,6 +2,7 @@ import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { query, collection, where, orderBy, startAt, endAt } from "firebase/firestore";
 import FriendItem from "components/friend-item/friend-item.compoent";
 import { useDeferredValue } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function SearchList({ searchKeyword }) {
 	const firestore = useFirestore();
@@ -16,10 +17,10 @@ export default function SearchList({ searchKeyword }) {
 		endAt((defferedKeyword && `${defferedKeyword}\uf8ff`) || " ")
 	);
 	const { data: searchResults } = useFirestoreCollectionData(searchQuery, { idField: "id" });
-
+	const { t } = useTranslation();
 	return (
 		<div className={`transition-opacity opacity-100 ${isStale && "opacity-50"}`}>
-			<p className="m-2 font-semibold">{searchResults.length ? "Results:" : "No results found"}</p>
+			<p className="m-2 font-semibold">{searchResults.length ? `${t("results")}:` : t("no results found")}</p>
 			{searchResults.map(doc => (
 				<FriendItem
 					key={doc.id}

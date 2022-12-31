@@ -6,7 +6,7 @@ import FriendsTab from "components/friends-tab/friends-tab.component";
 export default function NavMenu() {
 	const currentTab = useStore(state => state.currentTab);
 	return (
-		<div className="flex flex-col bg-skin-window w-3/12">
+		<div className="flex flex-col bg-skin-window w-3/12 border-x-skin border-x-2">
 			{(() => {
 				switch (currentTab) {
 					case "chats":

@@ -3,7 +3,7 @@ import { useState } from "react";
 import useStore from "libraries/zustand/store";
 import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
 import { useFirestore, useUser } from "reactfire";
-import { useEffect } from "react";
+import { t } from "i18next";
 
 export default function CurrentChatForm({ scrollToBottom }) {
 	const [input, setInput] = useState("");
@@ -32,7 +32,7 @@ export default function CurrentChatForm({ scrollToBottom }) {
 			<input
 				className="px-2 flex-1 bg-transparent outline-none border-none dark:caret-gray"
 				type="text"
-				placeholder="Enter a new message"
+				placeholder={t("message")}
 				value={input}
 				onChange={e => setInput(e.target.value)}
 			/>
