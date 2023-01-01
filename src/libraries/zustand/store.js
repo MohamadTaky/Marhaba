@@ -9,8 +9,11 @@ const store = set => ({
 	errorMessage: "",
 	setErrorMessage: payload => set({ errorMessage: payload }),
 
-	sidebarActive: false,
-	setSidebarActive: payload => set({ sidebarActive: payload }),
+	leftBarActive: true,
+	toggleLeftBar: _ => set(state => ({ leftBarActive: !state.leftBarActive })),
+	rightBarActive: true,
+	toggleRightBar: _ => set(state => ({ rightBarActive: !state.rightBarActive })),
+
 	currentChat: {},
 	setCurrentChat: payload => set({ currentChat: payload }),
 	currentTab: "chats",

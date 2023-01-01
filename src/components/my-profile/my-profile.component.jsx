@@ -1,6 +1,6 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
-import { PencilLine, CheckCircle } from "phosphor-react";
+import { PencilLine, CheckCircle, X } from "phosphor-react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import Avatar from "components/avatar/avatar.component";
@@ -9,6 +9,7 @@ import { useFirestore, useAuth, useStorage } from "reactfire";
 import useUserDoc from "libraries/reactfire/custom-hooks/useUserDoc";
 import { useTranslation } from "react-i18next";
 import useToggle from "hooks/useToggle";
+import useStore from "libraries/zustand/store";
 
 export default function MyProfile() {
 	const firestore = useFirestore();
@@ -18,6 +19,7 @@ export default function MyProfile() {
 	const [inputStatus, setInputStatus] = useState("");
 	const { userDoc, status } = useUserDoc();
 	const { t, i18n } = useTranslation();
+	const toggleRightBar = useStore(state => state.toggleRightBar);
 
 	const handleEditToggle = async () => {
 		const userRef = doc(firestore, `users/${userDoc.id}`);
@@ -40,7 +42,10 @@ export default function MyProfile() {
 	if (status === "loading") return "Loading";
 
 	return (
-		<div className="flex flex-col gap-4 p-4 items-center bg-skin-window w-3/12 relative border-x-2 border-x-skin">
+		<>
+			<button className="md:hidden ltr:ml-auto rtl:ml-auto" onClick={toggleRightBar}>
+				<X size="24" weight="bold" />
+			</button>
 			<Avatar
 				imageUrl={userDoc.data().avatarUrl}
 				handleChange={handleProfileImageChange}
@@ -65,7 +70,7 @@ export default function MyProfile() {
 					</>
 				)}
 			</div>
-			<p className="self-start bg-skin-element w-full p-1 rounded-md">
+			<p className="self-start bg-skin-element w-full px-2 py-1 rounded-md">
 				{t("friends")}: {userDoc.data().friends.length}
 			</p>
 			<p className="mt-auto">{t("language")} :</p>
@@ -81,6 +86,6 @@ export default function MyProfile() {
 					English
 				</button>
 			</div>
-		</div>
+		</>
 	);
 }

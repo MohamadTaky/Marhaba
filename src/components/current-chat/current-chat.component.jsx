@@ -12,7 +12,7 @@ export default function CurrentChat() {
 	const bottomRef = useRef();
 
 	return (
-		<div className="flex flex-col justify-center w-3/6 bg-skin-fill">
+		<div className="flex flex-col justify-center w-full bg-skin-fill">
 			{otherId ? (
 				<>
 					<Suspenser>

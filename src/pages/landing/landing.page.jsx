@@ -12,9 +12,9 @@ export default function LandingPage() {
 	const status = useStore(state => state.status);
 	const { value: isSignUp, toggle: toggleSignUp } = useToggle(true);
 	return (
-		<>
+		<div className="md:flex">
 			<Intro />
-			<div className="flex flex-col w-1/2 p-8">
+			<div className="h-screen flex flex-col p-8 md:w-1/2">
 				{(() => {
 					switch (status) {
 						case "loading":
@@ -44,6 +44,6 @@ export default function LandingPage() {
 					}
 				})()}
 			</div>
-		</>
+		</div>
 	);
 }

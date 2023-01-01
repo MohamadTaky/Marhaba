@@ -31,10 +31,10 @@ function App() {
 	}, [user]);
 
 	return (
-		<div dir={i18n.language === "ar" ? "rtl" : "ltr"} className={darkMode ? "dark" : ""}>
-			<div className="flex h-screen w-screen text-skin-primary bg-skin-fill">
-				<Suspenser>{signInCheckResult.signedIn ? <AppPage /> : <LandingPage />}</Suspenser>
-			</div>
+		<div
+			dir={i18n.language === "ar" ? "rtl" : "ltr"}
+			className={`text-skin-primary bg-skin-fill ${darkMode ? "dark" : ""}`}>
+			<Suspenser>{signInCheckResult.signedIn ? <AppPage /> : <LandingPage />}</Suspenser>
 		</div>
 	);
 }
