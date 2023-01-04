@@ -1,6 +1,7 @@
 import { ReactComponent as ReactLogo } from "assets/svgs/react-icon.svg";
 import { ReactComponent as TailwindLogo } from "assets/svgs/tailwindcss-icon.svg";
 import { ReactComponent as FirebaseLogo } from "assets/svgs/firebase-icon.svg";
+import { ReactComponent as Logo } from "assets/svgs/logo.svg";
 import { PhosphorLogo } from "phosphor-react";
 import { useTranslation } from "react-i18next";
 
@@ -10,6 +11,7 @@ export default function Intro() {
 	return (
 		<div className="flex flex-col items-center bg-skin-window text-skin-primary p-8 h-screen relative shadow-lg dark:shadow-none shadow-gray-500 md:w-1/2">
 			<h1 className="mt-4 text-5xl font-bold text-skin">{t("app name")}</h1>
+			<Logo className="w-1/3 mt-auto drop-shadow-xl" />
 			<footer className="mt-auto">
 				<p className="mb-4 text-center text-lg font-bold">{t("made with")}: </p>
 				<ul className="flex gap-2">

@@ -13,6 +13,8 @@ export default function CurrentChat() {
 
 	return (
 		<div className="flex flex-col justify-center w-full bg-skin-fill">
+			<>
+			</>
 			{otherId ? (
 				<>
 					<Suspenser>

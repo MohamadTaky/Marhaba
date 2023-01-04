@@ -30,7 +30,7 @@ export default function CurrentChatForm({ scrollToBottom }) {
 	return (
 		<form onSubmit={handleSubmit} className="mt-auto flex bg-skin-window">
 			<input
-				className="px-2 flex-1 bg-transparent outline-none border-none dark:caret-gray"
+				className="px-2 dir-auto flex-1 bg-transparent outline-none border-none dark:caret-gray"
 				type="text"
 				placeholder={t("message")}
 				value={input}

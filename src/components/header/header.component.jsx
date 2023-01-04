@@ -21,9 +21,9 @@ export default function Header() {
 	const isOnline = deltaMinutes < 5;
 
 	return (
-		<div className="flex gap-3 p-3 bg-skin-window border-b-2 border-skin rounded-b-xl shadow-md dark:shadow-none">
-			<button className="md:hidden" onClick={toggleLeftBar}>
-				<CaretRight size={48} />
+		<header className="flex gap-3 p-3 bg-skin-window border-b-2 border-skin rounded-b-xl shadow-md dark:shadow-none">
+			<button className="md:hidden rtl:rotate-180" onClick={toggleLeftBar}>
+				<CaretRight size={25} weight="bold" />
 			</button>
 			{headerData.name && (
 				<>
@@ -43,9 +43,9 @@ export default function Header() {
 				</>
 			)}
 			<button className="md:hidden" onClick={toggleRightBar}>
-				<List size={48} />
+				<List size={25} weight="bold" />
 			</button>
-		</div>
+		</header>
 	);
 }
 

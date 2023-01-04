@@ -8,6 +8,7 @@ import { t } from "i18next";
 
 export default function FriendItem({ id, data }) {
 	const setCurrentChat = useStore(state => state.setCurrentChat);
+	const toggleLeftBar = useStore(state => state.toggleLeftBar);
 	const firestore = useFirestore();
 
 	const { userDoc } = useUserDoc();
@@ -20,7 +21,13 @@ export default function FriendItem({ id, data }) {
 			<Button disabled={isFriend || isFriendRequestSent} onClick={() => sendFriendRequest(id, firestore)}>
 				{t(isFriend ? "friend" : isFriendRequestSent ? "sent" : "add")}
 			</Button>
-			<Button onClick={() => setCurrentChat({ otherUserId: id })}>{t("chat")}</Button>
+			<Button
+				onClick={() => {
+					setCurrentChat({ otherUserId: id });
+					toggleLeftBar();
+				}}>
+				{t("chat")}
+			</Button>
 		</UserCard>
 	);
 }

@@ -14,7 +14,7 @@ export default function Navbar() {
 
 	return (
 		<nav className="flex flex-col h-screen bg-skin-window">
-			<NavItem style="md:hidden" Icon={CaretLeft} handleClick={toggleLeftBar} />
+			<NavItem style="md:hidden rtl:rotate-180" Icon={CaretLeft} handleClick={toggleLeftBar} />
 			<NavItem Icon={ChatCircle} tooltip="chats" handleClick={() => setCurrentTab("chats")} />
 			<NavItem Icon={Users} tooltip="groups" handleClick={() => setCurrentTab("groups")} />
 			<NavItem Icon={User} tooltip="friends" handleClick={() => setCurrentTab("friends")} />

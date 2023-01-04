@@ -17,7 +17,7 @@ export default function Message({ content, sentAt, sentBy }) {
 	return (
 		<div className={`${containerStyles} min-w-[25ch] p-2 bg-skin-element`}>
 			<span className="text-emerald-500 font-bold">{senderData.name}</span>
-			<p className="my-1">{content}</p>
+			<p className="my-1 dir-auto">{content}</p>
 			<p className="w-fit ml-auto text-xs text-skin-secondary">{date}</p>
 		</div>
 	);

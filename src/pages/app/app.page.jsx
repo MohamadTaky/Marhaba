@@ -24,7 +24,7 @@ export default function AppPage() {
 		<div className="flex h-screen">
 			<div
 				className={`fixed md:static md:w-8/12 top-0 left-0 z-50 duration-300 transition-transform flex w-full ${
-					!leftBarActive && "-translate-x-full"
+					!leftBarActive && "ltr:-translate-x-full rtl:translate-x-full"
 				}`}>
 				<Navbar />
 				<Sidebar>
@@ -35,8 +35,8 @@ export default function AppPage() {
 			</div>
 			<CurrentChat />
 			<Sidebar
-				styles={`fixed md:static top-0 left-0  md:w-4/12 gap-4 p-4 duration-300 items-center origin-right ${
-					!rightBarActive && "translate-x-full"
+				styles={`fixed md:static top-0 left w-full md:w-4/12 gap-4 p-4 duration-300 items-center ${
+					!rightBarActive && "ltr:translate-x-full rtl:-translate-x-full"
 				}`}>
 				<Suspenser>
 					<MyProfile />

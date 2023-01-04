@@ -2,18 +2,18 @@ import classNames from "classnames";
 import { User, UsersThree, Plus } from "phosphor-react";
 
 export default function Avatar({ isGroup, imageUrl, size = "3.5rem", iconSize = "28", handleChange }) {
-	const sizeStyle = { width: size, height: size };
-	const iconStyle = classNames({ "transition-opacity group-hover:opacity-0": handleChange });
+	const sizeStyle = { width: size };
+	const iconStyle = classNames({ "transition-opacity  group-hover:opacity-0": handleChange });
 	return (
 		<div
 			style={sizeStyle}
-			className="group bg-cover flex justify-center items-center relative rounded-full overflow-hidden bg-skin-sec">
+			className="aspect-square self-center group bg-cover flex justify-center items-center relative rounded-full overflow-hidden bg-skin-sec">
 			{imageUrl ? (
 				<img src={imageUrl} />
 			) : isGroup ? (
 				<UsersThree className={iconStyle} weight="fill" size={iconSize.toString()} />
 			) : (
-				<User className={iconStyle} weight="fill" size={iconSize.toString()} />
+				<User weight="fill" size={iconSize.toString()} />
 			)}
 			{handleChange && (
 				<>
