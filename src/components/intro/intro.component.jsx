@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 
 export default function Intro() {
 	const { t } = useTranslation();
-
 	return (
 		<div className="flex flex-col items-center bg-skin-window text-skin-primary p-8 h-screen relative shadow-lg dark:shadow-none shadow-gray-500 md:w-1/2">
 			<h1 className="mt-4 text-5xl font-bold text-skin">{t("app name")}</h1>

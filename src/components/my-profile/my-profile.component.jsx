@@ -15,28 +15,17 @@ export default function MyProfile() {
 	const storage = useStorage();
 	const auth = useAuth();
 
-	const { userDoc, status } = useUserDoc();
+	const { userDoc } = useUserDoc();
 	const toggleRightBar = useStore(state => state.toggleRightBar);
-
-	const handleProfileImageChange = async e => {
-		const imageFile = e.target.files[0];
-		const imageRef = ref(storage, `images/${userDoc.id}`);
-		const uploadResault = await uploadBytes(imageRef, imageFile);
-		const downloadUrl = await getDownloadURL(uploadResault.ref);
-		await updateProfile(auth.currentUser, { photoURL: downloadUrl });
-		await updateDoc(doc(firestore, `users/${userDoc.id}`), { avatarUrl: downloadUrl });
-	};
-
-	if (status === "loading") return "Loading";
 
 	return (
 		<>
-			<button className="md:hidden ltr:ml-auto rtl:ml-auto" onClick={toggleRightBar}>
+			<button className="md:hidden ltr:ml-auto rtl:mr-auto" onClick={toggleRightBar}>
 				<X size="24" weight="bold" />
 			</button>
 			<Avatar
 				imageUrl={userDoc.data().avatarUrl}
-				handleChange={handleProfileImageChange}
+				handleChange={e => handleProfileImageChange(e, firestore, auth, storage)}
 				iconSize="50"
 				size="7rem"
 			/>
@@ -48,4 +37,13 @@ export default function MyProfile() {
 			<LanguageSelector />
 		</>
 	);
+
+	async function handleProfileImageChange(e, firestore, auth, storage) {
+		const imageFile = e.target.files[0];
+		const imageRef = ref(storage, `images/${userDoc.id}`);
+		const uploadResault = await uploadBytes(imageRef, imageFile);
+		const downloadUrl = await getDownloadURL(uploadResault.ref);
+		await updateProfile(auth.currentUser, { photoURL: downloadUrl });
+		await updateDoc(doc(firestore, `users/${userDoc.id}`), { avatarUrl: downloadUrl });
+	}
 }

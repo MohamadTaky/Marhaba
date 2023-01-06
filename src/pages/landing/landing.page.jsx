@@ -2,9 +2,9 @@ import SignIn from "components/sign-in/sign-in.component";
 import SignUp from "components/sign-up/sign-up.component";
 import useStore from "libraries/zustand/store";
 import Intro from "components/intro/intro.component";
-import { CircleNotch } from "phosphor-react";
 import { t } from "i18next";
 import useToggle from "hooks/useToggle";
+import LoadingSpinner from "components/loading-spinner/loading-spinner";
 
 export default function LandingPage() {
 	const errorMessage = useStore(state => state.errorMessage);
@@ -18,14 +18,7 @@ export default function LandingPage() {
 				{(() => {
 					switch (status) {
 						case "loading":
-							return (
-								<p className="my-auto text-center text-xl">
-									{t(statusMessage)}
-									<CircleNotch className={`inline ml-2 animate-spin-fast`} size={35} />
-								</p>
-							);
-						case "complete":
-							return <p className="my-auto text-center text-xl">{t(statusMessage)}</p>;
+							return <LoadingSpinner loadingMessage={t(statusMessage)} />;
 						default:
 							return (
 								<>

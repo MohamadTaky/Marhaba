@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { FirebaseAppProvider } from "reactfire";
 import FirebaseComponents from "components/firebase-components/firebase-components";
-import Suspenser from "components/suspenser/suspenser.component";
 import "libraries/i18n";
 
 const firebaseConfig = {
@@ -20,11 +19,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<FirebaseAppProvider suspense firebaseConfig={firebaseConfig}>
-			<Suspenser>
 				<FirebaseComponents>
 					<App />
 				</FirebaseComponents>
-			</Suspenser>
 		</FirebaseAppProvider>
 	</React.StrictMode>
 );

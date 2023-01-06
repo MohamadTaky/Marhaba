@@ -13,7 +13,7 @@ export default function Navbar() {
 	const auth = useAuth();
 
 	return (
-		<nav className="flex flex-col h-screen bg-skin-window">
+		<nav className="flex flex-col h-screen">
 			<NavItem style="md:hidden rtl:rotate-180" Icon={CaretLeft} handleClick={toggleLeftBar} />
 			<NavItem Icon={ChatCircle} tooltip="chats" handleClick={() => setCurrentTab("chats")} />
 			<NavItem Icon={Users} tooltip="groups" handleClick={() => setCurrentTab("groups")} />
@@ -23,7 +23,6 @@ export default function Navbar() {
 				tooltip="friend requests"
 				handleClick={() => setCurrentTab("friend requests")}
 			/>
-
 			<NavItem Icon={darkMode ? Moon : Sun} tooltip="dark mode" handleClick={toggleDarkMode} />
 			<NavItem Icon={SignOut} tooltip="sign out" bottom handleClick={() => auth.signOut()} />
 		</nav>

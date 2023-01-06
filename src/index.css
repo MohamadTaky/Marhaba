@@ -1,21 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-	.dark-scroll::-webkit-scrollbar,
-	.scroll::-webkit-scrollbar {
-		@apply w-2;
-	}
-
-	.scroll::-webkit-scrollbar-thumb {
-		@apply rounded-md;
-	}
-	.dark-scroll::-webkit-scrollbar-thumb {
-		@apply rounded-md;
-	}
-}
-
 @layer base {
 	:root {
 		--color-fill: #ffffff;
@@ -45,11 +30,6 @@
 	}
 }
 
-.dir-auto {
-	unicode-bidi: plaintext;
-	text-align: start;
-}
-
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
@@ -60,17 +40,4 @@ body {
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-	transition: background-color 5000s ease-in-out 0s;
-	-webkit-text-fill-color: var(--color-text-primary) !important;
 }

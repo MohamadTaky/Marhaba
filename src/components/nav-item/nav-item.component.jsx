@@ -14,7 +14,7 @@ export default function NavItem({ Icon, style, tooltip, bottom, handleClick }) {
 	return (
 		<button onClick={handleClick} className={`relative group ${bottom ? "mt-auto" : ""} ${style}`}>
 			{tooltip === "dark mode" ? (
-				<div className="relative">
+				<>
 					<Sun
 						className={`p-2 box-content transition-opacity text-orange-600 ${darkMode && "opacity-0"}`}
 						size={32}
@@ -27,7 +27,7 @@ export default function NavItem({ Icon, style, tooltip, bottom, handleClick }) {
 						size={32}
 						weight="fill"
 					/>
-				</div>
+				</>
 			) : (
 				<Icon className={`p-2 box-content transition-colors ${activeClass}`} size={32} weight="fill" />
 			)}

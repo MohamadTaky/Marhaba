@@ -4,7 +4,6 @@ import Navbar from "components/nav-bar/nav-bar.component";
 import MyProfile from "components/my-profile/my-profile.component";
 import useStore from "libraries/zustand/store";
 import { useEffect } from "react";
-import Sidebar from "components/sidebar/sidebar.component";
 import Suspenser from "components/suspenser/suspenser.component";
 
 export default function AppPage() {
@@ -23,25 +22,30 @@ export default function AppPage() {
 	return (
 		<div className="flex h-screen">
 			<div
-				className={`fixed md:static md:w-8/12 top-0 left-0 z-50 duration-300 transition-transform flex w-full ${
-					!leftBarActive && "ltr:-translate-x-full rtl:translate-x-full"
-				}`}>
+				className={`fixed top-0 ltr:left-0 rtl:right-0 w-full h-screen md:static md:w-8/12 z-40
+				flex
+				bg-skin-window
+				md:ltr:translate-x-0 md:rtl:translate-x-0 duration-300 transition-transform
+				${!leftBarActive && "ltr:-translate-x-full rtl:translate-x-full"}`}>
 				<Navbar />
-				<Sidebar>
-					<Suspenser>
+				<Suspenser>
+					<div className="flex flex-col grow border-x-2 border-skin">
 						<NavMenu />
-					</Suspenser>
-				</Sidebar>
+					</div>
+				</Suspenser>
 			</div>
 			<CurrentChat />
-			<Sidebar
-				styles={`fixed md:static top-0 left w-full md:w-4/12 gap-4 p-4 duration-300 items-center ${
-					!rightBarActive && "ltr:translate-x-full rtl:-translate-x-full"
-				}`}>
+			<div
+				className={`fixed top-0 w-full h-screen md:w-4/12 md:static z-50
+				flex flex-col gap-4 p-4 items-center
+				bg-skin-window border-x-skin border-x-2
+				transition-transform md:ltr:translate-x-0 md:rtl:translate-x-0 duration-300
+				${!rightBarActive && "ltr:translate-x-full rtl:-translate-x-full"}
+				`}>
 				<Suspenser>
 					<MyProfile />
 				</Suspenser>
-			</Sidebar>
+			</div>
 		</div>
 	);
 }

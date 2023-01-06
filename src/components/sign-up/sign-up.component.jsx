@@ -19,11 +19,7 @@ export default function SignUp() {
 			<Input id="sign-up-username" name="username" label={t("user name")} />
 			<Input id="sign-up-email" name="email" type="email" label={t("email")} />
 			<PasswordInput id="sign-up-password" name="password" label={t("password")} />
-			<PasswordInput
-				id="sign-up-confirm-password"
-				name="confirmPassword"
-				label={t("confirm password")}
-			/>
+			<PasswordInput id="sign-up-confirm-password" name="confirmPassword" label={t("confirm password")} />
 			<Button type="submit">{t("sign up")}</Button>
 		</form>
 	);

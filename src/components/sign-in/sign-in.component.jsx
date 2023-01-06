@@ -15,9 +15,9 @@ export default function SignIn() {
 		<form
 			className="flex flex-col gap-4"
 			onSubmit={e => handleSignIn(e, setStatus, setStatusMessage, setErrorMessage)}>
-			<Input id="sign-in-email" type="email" label={t("email")} />
-			<PasswordInput id="sign-in-password" label={t("password")} />
-			<CheckBox id="sign-in-remember-me" label={t("remember me")} />
+			<Input name="email" id="sign-in-email" type="email" label={t("email")} />
+			<PasswordInput name="password" id="sign-in-password" label={t("password")} />
+			<CheckBox name="rememberMe" id="sign-in-remember-me" label={t("remember me")} />
 			<Button>{t("sign in")}</Button>
 		</form>
 	);

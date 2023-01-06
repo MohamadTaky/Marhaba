@@ -2,7 +2,7 @@ import "./App.css";
 import LandingPage from "pages/landing/landing.page";
 import AppPage from "pages/app/app.page";
 import { useEffect } from "react";
-import { doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { usePersistedStore } from "libraries/zustand/store";
 import { useRef } from "react";
 import { useSigninCheck, useFirestore, useUser } from "reactfire";
@@ -19,16 +19,13 @@ function App() {
 	useEffect(() => {
 		if (user) {
 			const userDocRef = doc(firestore, `users/${user.uid}`);
-			(async () => await updateDoc(userDocRef, { lastActive: serverTimestamp() }))();
-			intervalRef.current = setInterval(
-				async () => await setDoc(userDocRef, { lastActive: serverTimestamp() }, { merge: true }),
-				5 * 60 * 1000
-			);
+			const updateLastActive = async () =>
+				await setDoc(userDocRef, { lastActive: serverTimestamp() }, { merge: true });
+			updateLastActive();
+			intervalRef.current = setInterval(updateLastActive, 5 * 60 * 1000);
 		}
-		return () => {
-			clearInterval(intervalRef.current);
-		};
-	}, [user]);
+		return () => clearInterval(intervalRef.current);
+	}, [user, firestore]);
 
 	return (
 		<div

@@ -28,17 +28,19 @@ export default function CurrentChatForm({ scrollToBottom }) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="mt-auto flex bg-skin-window">
-			<input
-				className="px-2 dir-auto flex-1 bg-transparent outline-none border-none dark:caret-gray"
-				type="text"
-				placeholder={t("message")}
-				value={input}
-				onChange={e => setInput(e.target.value)}
-			/>
-			<button className="p-2 transition-colors hover:bg-skin-sec" type="submit">
-				<PaperPlane className="text-skin-active" weight="fill" size={32} />
-			</button>
-		</form>
+		otherId && (
+			<form onSubmit={handleSubmit} className="mt-auto flex bg-skin-window">
+				<input
+					className="px-2 dir-auto flex-1 bg-transparent outline-none border-none dark:caret-gray"
+					type="text"
+					placeholder={t("message")}
+					value={input}
+					onChange={e => setInput(e.target.value)}
+				/>
+				<button className="p-2 transition-colors hover:bg-skin-sec" type="submit">
+					<PaperPlane className="text-skin-active" weight="fill" size={32} />
+				</button>
+			</form>
+		)
 	);
 }
